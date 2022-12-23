@@ -27,8 +27,7 @@ const Query = objectType({
         t.nonNull.list.nonNull.field('userAndLinks', {
       type: 'User',
       resolve: async (_parent, _args, context: Context) => {
-        const publishedAuthors: any
-        publishedAuthors = await prisma.user.findMany({
+        const publishedAuthors = await context.prisma.user.findMany({
           include: {
             posts: {
               where: {
